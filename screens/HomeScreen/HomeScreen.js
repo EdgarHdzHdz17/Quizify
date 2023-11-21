@@ -70,8 +70,8 @@ const styles = StyleSheet.create({
 
   headerText:{
     color:'#fa8072',
-    fontSize:30,
-    marginTop:30,
+    fontSize:40,
+    marginTop:50,
     marginLeft:'10%',
     fontWeight: 'bold',
   },

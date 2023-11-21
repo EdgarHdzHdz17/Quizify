@@ -1,39 +1,125 @@
 import React from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, View, Image, Text } from 'react-native';
+import { StyleSheet, View, Image, Text, TouchableOpacity, Alert } from 'react-native';
 import Onboarding from 'react-native-onboarding-swiper';
 
 export default function CapitalsHome() {
+
+  const incorrectAnswer= ()=>{
+    Alert.alert("Incorrecto")
+    console.log("Incorrecto")
+  }
+
+  const correctAnswer= ()=>{
+    console.log("Correcto")
+  }
+
+
   const pages = [
     {
-      backgroundColor: 'blue',
+      backgroundColor: 'rgba(255, 160, 122, 0.9)',
       image: <Image style={styles.image} source={require('./assets/Monterrey.png')} />,
-      title: 'Monterrey',
-      subtitle: 'Done with React Native Onboarding Swiper',
+      title: (
+        <View style={styles.titleContainer}>
+          <View style={styles.answersContainer}>
+            <Text style={styles.titleText}>Nuevo Leon</Text>
+            <TouchableOpacity style={styles.button} onPress={correctAnswer}>
+              <Text style={styles.answerText}>Monterrey</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.button } onPress={incorrectAnswer}>
+              <Text style={styles.answerText}>CDMX</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.button} onPress={incorrectAnswer}>
+              <Text style={styles.answerText}>San Nicolas</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      ),
+      subtitle: '',
     },
     {
-      backgroundColor: '#fff',
+      backgroundColor: 'rgba(255, 160, 122, 0.9)',
       image: <Image style={styles.image} source={require('./assets/Jalisco.png')} />,
-      title: 'Jalisco',
-      subtitle: 'Done with React Native Onboarding Swiper',
+      title: (
+        <View style={styles.titleContainer}>
+          <View style={styles.answersContainer}>
+            <Text style={styles.titleText}>Guadalajara</Text>
+            <TouchableOpacity style={styles.button} onPress={correctAnswer}>
+              <Text style={styles.answerText}>Jalisco</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.button}  onPress={incorrectAnswer}>
+              <Text style={styles.answerText}>Campeche</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.button}  onPress={incorrectAnswer}>
+              <Text style={styles.answerText}>Puebla</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      ),
+      subtitle: '',
     },
     {
-      backgroundColor: '#fff',
+      backgroundColor: 'rgba(255, 160, 122, 0.9)',
       image: <Image style={styles.image} source={require('./assets/Veracruz.png')} />,
-      title: 'Veracruz',
-      subtitle: 'Done with React Native Onboarding Swiper',
+      title: ( 
+      <View style={styles.titleContainer}>
+        <View style={styles.answersContainer}>
+          <Text style={styles.titleText}>Veracruz</Text>
+          <TouchableOpacity style={styles.button} onPress={incorrectAnswer}>
+            <Text style={styles.answerText}>Cordoba</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.button}  onPress={correctAnswer}>
+            <Text style={styles.answerText}>Xalapa</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.button}  onPress={incorrectAnswer}>
+            <Text style={styles.answerText}>Michoacan</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+      ),
+      subtitle: '',
     },
     {
-      backgroundColor: '#fff',
+      backgroundColor: 'rgba(255, 160, 122, 0.9)',
       image: <Image style={styles.image} source={require('./assets/Yucatan.png')} />,
-      title: 'Yucatan',
-      subtitle: 'Done with React Native Onboarding Swiper',
+      title: ( 
+        <View style={styles.titleContainer}>
+          <View style={styles.answersContainer}>
+            <Text style={styles.titleText}>Merida</Text>
+            <TouchableOpacity style={styles.button} onPress={incorrectAnswer}>
+              <Text style={styles.answerText}>Guerrero</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.button} onPress={incorrectAnswer}>
+              <Text style={styles.answerText}>Hidalgo</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.button}  onPress={correctAnswer}>
+              <Text style={styles.answerText}>Yucatan</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+        ),
+      subtitle: '',
     },
     {
-      backgroundColor: '#fff',
+      backgroundColor: 'rgba(255, 160, 122, 0.9)',
       image: <Image style={styles.image} source={require('./assets/Puebla.png')} />,
-      title: 'Puebla',
-      subtitle: 'Done with React Native Onboarding Swiper',
+      title: ( 
+        <View style={styles.titleContainer}>
+          <View style={styles.answersContainer}>
+            <Text style={styles.titleText}>Puebla</Text>
+            <TouchableOpacity style={styles.button} onPress={incorrectAnswer}>
+              <Text style={styles.answerText}>Sonora</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.button} onPress={incorrectAnswer}>
+              <Text style={styles.answerText}>Tlaxcala</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.button} onPress={correctAnswer}>
+              <Text style={styles.answerText}>Puebla</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+        ),
+      subtitle: '',
     },
   ];
 
@@ -43,11 +129,6 @@ export default function CapitalsHome() {
         showPagination={false}
         pages={pages.map((page, index) => ({
           ...page,
-          title: (
-            <View style={styles.titleContainer}>
-              <Text style={styles.title}>{page.title}</Text>
-            </View>
-          ),
         }))}
       />
       <StatusBar style="auto" />
@@ -63,18 +144,44 @@ const styles = StyleSheet.create({
   image: {
     width: '60%',
     height: '60%',
-    alignSelf: 'center', // Centrar la imagen
-    backgroundColor: 'red',
-    position:'relative',
-    marginTop:0
+    marginTop: 0,
   },
   titleContainer: {
     marginTop: 0,
-    position:'absolute'
+    position: 'absolute',
   },
-  title: {
-    fontSize: 24,
+  answersContainer: {
+    marginTop: 220,
+    flex: 1,
+    width: 200,
+    height: 200,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  button: {
+    alignItems: 'center',
+    backgroundColor: 'white',
+    padding: 10,
+    flex: 1,
+    width: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderWidth: 1,
+    borderRadius: 20,
+    borderColor: '#ccc',
+    marginTop: 5,
+    opacity: 0.9,
+  },
+
+  titleText: {
+    color: 'white',
+    fontSize: 30,
     fontWeight: 'bold',
-    textAlign: 'center',
+  },
+
+  answerText: {
+    color: '#6a5acd',
+    fontSize: 20,
+    fontWeight: 'bold',
   },
 });
