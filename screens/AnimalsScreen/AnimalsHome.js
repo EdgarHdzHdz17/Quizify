@@ -4,7 +4,7 @@ import { StyleSheet, View, Image, Text, TouchableOpacity, Alert, SafeAreaView } 
 import Onboarding from 'react-native-onboarding-swiper';
 import { Audio } from 'expo-av'
 
-export default function TraditionsHome() {
+export default function AnimalsHome() {
 
   const [sound, setSound] = useState();
 
@@ -39,7 +39,7 @@ export default function TraditionsHome() {
 
   const pages = [
     {
-      backgroundColor: 'rgba(135,206,250, 0.9)',
+      backgroundColor: 'rgba(221,160,221, 0.9)',
       image: <Image style={styles.image} source={require('./assets/Monterrey.png')} />,
       title: (
         <View style={styles.titleContainer}>
@@ -60,7 +60,7 @@ export default function TraditionsHome() {
       subtitle: '',
     },
     {
-      backgroundColor: 'rgba(255, 160, 122, 0.9)',
+      backgroundColor: 'rgba(221,160,221, 0.9)',
       image: <Image style={styles.image} source={require('./assets/Jalisco.png')} />,
       title: (
         <View style={styles.titleContainer}>
@@ -81,7 +81,7 @@ export default function TraditionsHome() {
       subtitle: '',
     },
     {
-      backgroundColor: 'rgba(255, 160, 122, 0.9)',
+      backgroundColor: 'rgba(221,160,221, 0.9)',
       image: <Image style={styles.image} source={require('./assets/Veracruz.png')} />,
       title: ( 
       <View style={styles.titleContainer}>
@@ -102,7 +102,7 @@ export default function TraditionsHome() {
       subtitle: '',
     },
     {
-      backgroundColor: 'rgba(255, 160, 122, 0.9)',
+      backgroundColor: 'rgba(221,160,221, 0.9)',
       image: <Image style={styles.image} source={require('./assets/Yucatan.png')} />,
       title: ( 
         <View style={styles.titleContainer}>
@@ -123,7 +123,7 @@ export default function TraditionsHome() {
       subtitle: '',
     },
     {
-      backgroundColor: 'rgba(255, 160, 122, 0.9)',
+      backgroundColor: 'rgba(221,160,221, 0.9)',
       image: <Image style={styles.image} source={require('./assets/Puebla.png')} />,
       title: ( 
         <View style={styles.titleContainer}>

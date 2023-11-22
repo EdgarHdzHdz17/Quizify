@@ -1,19 +1,41 @@
-import React from 'react';
+import React,{useEffect,useState} from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, View, Image, Text, TouchableOpacity, Alert } from 'react-native';
+import { StyleSheet, View, Image, Text, TouchableOpacity, Alert, SafeAreaView } from 'react-native';
 import Onboarding from 'react-native-onboarding-swiper';
+import { Audio } from 'expo-av'
 
 export default function CapitalsHome() {
+
+  const [sound, setSound] = useState();
 
   const incorrectAnswer= ()=>{
     Alert.alert("Incorrecto")
     console.log("Incorrecto")
+    playSoundIncorrect();
   }
 
   const correctAnswer= ()=>{
     console.log("Correcto")
+    playSoundCorrect();
   }
 
+  async function playSoundCorrect() {
+    console.log('Loading Sound');
+    const { sound } = await Audio.Sound.createAsync( require('../assets/soundCorrect.mp3')
+    );
+    setSound(sound);
+    console.log('Playing Sound');
+    await sound.playAsync();
+  }
+
+  async function playSoundIncorrect() {
+    console.log('Loading Sound');
+    const { sound } = await Audio.Sound.createAsync( require('../assets/incorrectSound.mp3')
+    );
+    setSound(sound);
+    console.log('Playing Sound');
+    await sound.playAsync();
+  }
 
   const pages = [
     {
@@ -124,15 +146,15 @@ export default function CapitalsHome() {
   ];
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <Onboarding
         showPagination={false}
-        pages={pages.map((page, index) => ({
+        pages={pages.map((page) => ({
           ...page,
         }))}
       />
       <StatusBar style="auto" />
-    </View>
+    </SafeAreaView>
   );
 }
 
@@ -151,7 +173,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
   },
   answersContainer: {
-    marginTop: 220,
+    marginTop: 300,
     flex: 1,
     width: 200,
     height: 200,

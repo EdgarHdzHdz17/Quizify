@@ -1,13 +1,14 @@
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View, TouchableOpacity,Image} from "react-native";
+import { StyleSheet, Text, View, TouchableOpacity,Image, SafeAreaView} from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { LinearGradient } from "expo-linear-gradient";
+
 
 export default function HomeScreen() {
   const navigation = useNavigation();
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <View style={styles.headerContainer}>
         <Text style={styles.headerText}>Let's Play</Text>
       </View>
@@ -51,14 +52,14 @@ export default function HomeScreen() {
       
 
       <StatusBar style="auto" />
-    </View>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "#f5f5dc",
     alignItems: "center",
     justifyContent: "center",
   },
@@ -71,12 +72,11 @@ const styles = StyleSheet.create({
   headerText:{
     color:'#fa8072',
     fontSize:40,
-    marginTop:50,
-    marginLeft:'10%',
+    marginTop:20,
+    marginLeft:50,
     fontWeight: 'bold',
   },
   
-
   ///
   capitalsContainer: {
     flex: 2,
