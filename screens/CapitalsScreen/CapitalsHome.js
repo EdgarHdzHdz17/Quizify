@@ -1,60 +1,88 @@
 import React,{useEffect,useState} from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, View, Image, Text, TouchableOpacity, Alert, SafeAreaView } from 'react-native';
+import { StyleSheet, View, Image, Text, TouchableOpacity,SafeAreaView } from 'react-native';
 import Onboarding from 'react-native-onboarding-swiper';
 import { Audio } from 'expo-av'
 
+
 export default function CapitalsHome() {
 
-  const [sound, setSound] = useState();
+  const [score, setScore] = useState(0);
+  const [correctSound, setCorrectSound] = useState();
+  const [incorrectSound, setIncorrectSound] = useState();
+  const [buttonColorCorrect, setButtonColorCorrect] = useState('white');
+  const [buttonColorIncorrect, setButtonColorIncorrect] = useState('white');
+  
 
-  const incorrectAnswer= ()=>{
-    Alert.alert("Incorrecto")
-    console.log("Incorrecto")
-    playSoundIncorrect();
+  useEffect(() => {
+    async function loadSounds() {
+      const { sound: correct } = await Audio.Sound.createAsync(
+        require('../assets/soundCorrect.mp3')
+      );
+      setCorrectSound(correct);
+
+      const { sound: incorrect } = await Audio.Sound.createAsync(
+        require('../assets/incorrectSound.mp3')
+      );
+      setIncorrectSound(incorrect);
+    }
+
+    loadSounds();
+
+    return () => {
+      if (correctSound) {
+        correctSound.unloadAsync();
+      }
+      if (incorrectSound) {
+        incorrectSound.unloadAsync();
+      }
+    };
+  }, []);
+
+  async function playSound(sound) {
+    if (sound) {
+      await sound.replayAsync();
+    }
   }
 
-  const correctAnswer= ()=>{
-    console.log("Correcto")
-    playSoundCorrect();
-  }
+  const correctAnswer = () => {
+    console.log("Correcto");
+    playSound(correctSound);
+    setScore((prevScore) => {
+      const newScore = prevScore + 2;
+      console.log('Puntaje actual:', newScore);
+      return newScore;
+    });
+    setButtonColorCorrect('#8fbc8f');
+    setButtonColorIncorrect('white')
+  };
 
-  async function playSoundCorrect() {
-    console.log('Loading Sound');
-    const { sound } = await Audio.Sound.createAsync( require('../assets/soundCorrect.mp3')
-    );
-    setSound(sound);
-    console.log('Playing Sound');
-    await sound.playAsync();
-  }
-
-  async function playSoundIncorrect() {
-    console.log('Loading Sound');
-    const { sound } = await Audio.Sound.createAsync( require('../assets/incorrectSound.mp3')
-    );
-    setSound(sound);
-    console.log('Playing Sound');
-    await sound.playAsync();
-  }
+  const incorrectAnswer = () => {
+    console.log("Incorrecto");
+    playSound(incorrectSound);
+    setButtonColorIncorrect('#FA682A');
+    setButtonColorCorrect('white')
+  };
 
   const pages = [
-    {
+    { 
       backgroundColor: 'rgba(255, 160, 122, 0.9)',
       image: <Image style={styles.image} source={require('./assets/Monterrey.png')} />,
       title: (
         <View style={styles.titleContainer}>
           <View style={styles.answersContainer}>
             <Text style={styles.titleText}>Nuevo Leon</Text>
-            <TouchableOpacity style={styles.button} onPress={correctAnswer}>
+            <TouchableOpacity style={[styles.button,{backgroundColor:buttonColorCorrect}]} onPress={correctAnswer}>
               <Text style={styles.answerText}>Monterrey</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.button } onPress={incorrectAnswer}>
+            <TouchableOpacity style={[styles.button,{backgroundColor:buttonColorIncorrect}]} onPress={incorrectAnswer}>
               <Text style={styles.answerText}>CDMX</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.button} onPress={incorrectAnswer}>
+            <TouchableOpacity style={[styles.button,{backgroundColor:buttonColorIncorrect}]} onPress={incorrectAnswer}>
               <Text style={styles.answerText}>San Nicolas</Text>
             </TouchableOpacity>
           </View>
+          <Text style={styles.scoreText}>Puntaje: {score}</Text>
         </View>
       ),
       subtitle: '',
@@ -76,6 +104,7 @@ export default function CapitalsHome() {
               <Text style={styles.answerText}>Puebla</Text>
             </TouchableOpacity>
           </View>
+          <Text style={styles.scoreText}>Puntaje: {score}</Text>
         </View>
       ),
       subtitle: '',
@@ -97,6 +126,7 @@ export default function CapitalsHome() {
             <Text style={styles.answerText}>Michoacan</Text>
           </TouchableOpacity>
         </View>
+        <Text style={styles.scoreText}>Puntaje: {score}</Text>
       </View>
       ),
       subtitle: '',
@@ -118,6 +148,7 @@ export default function CapitalsHome() {
               <Text style={styles.answerText}>Yucatan</Text>
             </TouchableOpacity>
           </View>
+          <Text style={styles.scoreText}>Puntaje: {score}</Text>
         </View>
         ),
       subtitle: '',
@@ -139,6 +170,7 @@ export default function CapitalsHome() {
               <Text style={styles.answerText}>Puebla</Text>
             </TouchableOpacity>
           </View>
+          <Text style={styles.scoreText}>Puntaje: {score}</Text>
         </View>
         ),
       subtitle: '',
@@ -182,7 +214,7 @@ const styles = StyleSheet.create({
   },
   button: {
     alignItems: 'center',
-    backgroundColor: 'white',
+    backgroundColor:'white',
     padding: 10,
     flex: 1,
     width: '100%',
@@ -206,4 +238,12 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: 'bold',
   },
+
+  scoreText:{
+    color:'white',
+    fontSize:20,
+    marginTop:15,
+    marginLeft:65,
+    fontWeight: 'bold',
+  }
 });
