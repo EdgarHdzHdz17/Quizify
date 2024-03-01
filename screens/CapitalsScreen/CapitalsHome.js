@@ -4,7 +4,6 @@ import { StyleSheet, View, Image, Text, TouchableOpacity,SafeAreaView } from 're
 import Onboarding from 'react-native-onboarding-swiper';
 import { Audio } from 'expo-av'
 
-
 export default function CapitalsHome() {
 
   const [score, setScore] = useState(0);
@@ -13,57 +12,6 @@ export default function CapitalsHome() {
   const [buttonColorCorrect, setButtonColorCorrect] = useState('white');
   const [buttonColorIncorrect, setButtonColorIncorrect] = useState('white');
   
-
-  useEffect(() => {
-    async function loadSounds() {
-      const { sound: correct } = await Audio.Sound.createAsync(
-        require('../assets/soundCorrect.mp3')
-      );
-      setCorrectSound(correct);
-
-      const { sound: incorrect } = await Audio.Sound.createAsync(
-        require('../assets/incorrectSound.mp3')
-      );
-      setIncorrectSound(incorrect);
-    }
-
-    loadSounds();
-
-    return () => {
-      if (correctSound) {
-        correctSound.unloadAsync();
-      }
-      if (incorrectSound) {
-        incorrectSound.unloadAsync();
-      }
-    };
-  }, []);
-
-  async function playSound(sound) {
-    if (sound) {
-      await sound.replayAsync();
-    }
-  }
-
-  const correctAnswer = () => {
-    console.log("Correcto");
-    playSound(correctSound);
-    setScore((prevScore) => {
-      const newScore = prevScore + 2;
-      console.log('Puntaje actual:', newScore);
-      return newScore;
-    });
-    setButtonColorCorrect('#8fbc8f');
-    setButtonColorIncorrect('white')
-  };
-
-  const incorrectAnswer = () => {
-    console.log("Incorrecto");
-    playSound(incorrectSound);
-    setButtonColorIncorrect('#FA682A');
-    setButtonColorCorrect('white')
-  };
-
   const pages = [
     { 
       backgroundColor: 'rgba(255, 160, 122, 0.9)',
@@ -247,3 +195,56 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   }
 });
+
+
+/**
+ * useEffect(() => {
+    async function loadSounds() {
+      const { sound: correct } = await Audio.Sound.createAsync(
+        require('../assets/soundCorrect.mp3')
+      );
+      setCorrectSound(correct);
+
+      const { sound: incorrect } = await Audio.Sound.createAsync(
+        require('../assets/incorrectSound.mp3')
+      );
+      setIncorrectSound(incorrect);
+    }
+
+    loadSounds();
+
+    return () => {
+      if (correctSound) {
+        correctSound.unloadAsync();
+      }
+      if (incorrectSound) {
+        incorrectSound.unloadAsync();
+      }
+    };
+  }, []);
+
+  async function playSound(sound) {
+    if (sound) {
+      await sound.replayAsync();
+    }
+  }
+
+  const correctAnswer = () => {
+    console.log("Correcto");
+    playSound(correctSound);
+    setScore((prevScore) => {
+      const newScore = prevScore + 2;
+      console.log('Puntaje actual:', newScore);
+      return newScore;
+    });
+    setButtonColorCorrect('#8fbc8f');
+    setButtonColorIncorrect('white')
+  };
+
+  const incorrectAnswer = () => {
+    console.log("Incorrecto");
+    playSound(incorrectSound);
+    setButtonColorIncorrect('#FA682A');
+    setButtonColorCorrect('white')
+  };
+ */
