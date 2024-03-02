@@ -1,19 +1,12 @@
 import React,{useEffect,useState} from 'react';
-import { StyleSheet,Text,SafeAreaView } from 'react-native';
-
+import { Text,SafeAreaView } from 'react-native';
+import stylesTraditionsHome from './TraditionsHomeStyles';
 
 export default function TraditionsHome() {
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={stylesTraditionsHome.container}>
       <Text>Hellow Word</Text>
     </SafeAreaView>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    justifyContent:"center",
-    alignItems:"center",
-    flex:1
-  },
-});

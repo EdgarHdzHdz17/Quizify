@@ -1,19 +1,11 @@
-import { View,Text,StyleSheet, SafeAreaView } from "react-native";
+import { View,Text,SafeAreaView } from "react-native";
+import stylesAnimalsHome from "./AnimalHomeStyles";
 
 export default function AnimalsHome (){
   return(
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={stylesAnimalsHome.container}>
       <Text>Hellow Word</Text>
     </SafeAreaView>
   ); 
 }
 
-
-const styles = StyleSheet.create({
-  container:{
-    justifyContent:"center",
-    alignItems:"center",
-    flex:1
-  }
-
-})
