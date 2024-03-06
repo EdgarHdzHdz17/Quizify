@@ -1,11 +1,11 @@
 import { StyleSheet } from "react-native";
 
 const stylesTraditionsHome = StyleSheet.create({
-    container: {
-      justifyContent:"center",
-      alignItems:"center",
-      flex:1
-    },
-  });
+  container: {
+    justifyContent: "center",
+    alignItems: "center",
+    flex: 1,
+  },
+});
 
-  export default stylesTraditionsHome;
+export default stylesTraditionsHome;

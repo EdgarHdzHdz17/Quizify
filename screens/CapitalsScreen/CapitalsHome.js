@@ -1,141 +1,166 @@
-import React,{useEffect,useState} from 'react';
-import { StatusBar } from 'expo-status-bar';
-import { View, Image, Text, TouchableOpacity,SafeAreaView } from 'react-native';
-import Onboarding from 'react-native-onboarding-swiper';
-import { Audio } from 'expo-av'
-import stylesCapitalsHome from './CapitalsHomeStyles';
+import React, { useEffect, useState } from "react";
+import { StatusBar } from "expo-status-bar";
+import {
+  View,
+  Image,
+  Text,
+  TouchableOpacity,
+  SafeAreaView,
+} from "react-native";
+import Onboarding from "react-native-onboarding-swiper";
+import stylesCapitalsHome from "./CapitalsHomeStyles";
+import monterreyImage from "./assets/Monterrey.png";
+import jaliscoImage from "./assets/Jalisco.png";
+import pueblaImage from "./assets/Puebla.png";
+import veracruzImage from "./assets/Veracruz.png";
+import yucantanImage from "./assets/Yucatan.png";
 
 export default function CapitalsHome() {
-
-  const [buttonColorCorrect, setButtonColorCorrect] = useState('white');
-  const [buttonColorIncorrect, setButtonColorIncorrect] = useState('white');
-
   const [score, setScore] = useState(0);
-  const [answered, setAnswered] = useState(false);
 
   const handleAnswer = (isCorrect) => {
-      if (isCorrect) {
-        setScore(score + 2);
-        setButtonColorCorrect('#8fbc8f');
-        setButtonColorIncorrect('white');
-      } else {
-        setScore(Math.max(score - 2, 0));
-        setButtonColorIncorrect('#FA682A');
-        setButtonColorCorrect('#8fbc8f');
-      }
+    let newScore = isCorrect ? score + 2 : Math.max(score - 2, 0);
+    setScore(newScore);
+    console.log(newScore);
 
+    if (newScore === 10) {
+      console.log("¡Ganaste!");
+    }
   };
 
   const pages = [
-    { 
-      backgroundColor: 'rgba(255, 160, 122, 0.9)',
-      image: <Image style={stylesCapitalsHome.image} source={require('./assets/Monterrey.png')} />,
+    /*Monterrey*/
+    {
+      backgroundColor: "rgba(255, 160, 122, 0.9)",
+      image: <Image style={stylesCapitalsHome.image} source={monterreyImage} />,
       title: (
         <View style={stylesCapitalsHome.titleContainer}>
           <View style={stylesCapitalsHome.answersContainer}>
             <Text style={stylesCapitalsHome.titleText}>Nuevo Leon</Text>
-            <TouchableOpacity style={[stylesCapitalsHome.button,{backgroundColor:buttonColorCorrect}]} onPress={() => handleAnswer(true)} disabled={answered} >
+            <TouchableOpacity
+              style={stylesCapitalsHome.button}
+              onPress={() => handleAnswer(true)}
+            >
               <Text style={stylesCapitalsHome.answerText}>Monterrey</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={[stylesCapitalsHome.button,{backgroundColor:buttonColorIncorrect}]} onPress={() => handleAnswer(false)} disabled={answered} >
+            <TouchableOpacity
+              style={stylesCapitalsHome.button}
+              onPress={() => handleAnswer(false)}
+            >
               <Text style={stylesCapitalsHome.answerText}>CDMX</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={[stylesCapitalsHome.button,{backgroundColor:buttonColorIncorrect}]} onPress={() => handleAnswer(false)} disabled={answered} >
+            <TouchableOpacity
+              style={stylesCapitalsHome.button}
+              onPress={() => handleAnswer(false)}
+            >
               <Text style={stylesCapitalsHome.answerText}>San Nicolas</Text>
             </TouchableOpacity>
           </View>
           <Text style={stylesCapitalsHome.scoreText}>Puntaje: {score}</Text>
         </View>
       ),
-      subtitle: '',
+      subtitle: "",
     },
+    /*Guadalajara*/
     {
-      backgroundColor: 'rgba(255, 160, 122, 0.9)',
-      image: <Image style={stylesCapitalsHome.image} source={require('./assets/Jalisco.png')} />,
+      backgroundColor: "rgba(255, 160, 122, 0.9)",
+      image: <Image style={stylesCapitalsHome.image} source={jaliscoImage} />,
       title: (
         <View style={stylesCapitalsHome.titleContainer}>
           <View style={stylesCapitalsHome.answersContainer}>
-            <Text style={stylesCapitalsHome.titleText}>Guadalajara</Text >
-            <TouchableOpacity style={stylesCapitalsHome.button} onPress={() => handleAnswer(true)} disabled={answered} >
+            <Text style={stylesCapitalsHome.titleText}>Guadalajara</Text>
+            <TouchableOpacity
+              style={stylesCapitalsHome.button}
+              onPress={() => handleAnswer(true)}
+            >
               <Text style={stylesCapitalsHome.answerText}>Jalisco</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={stylesCapitalsHome.button} onPress={() => handleAnswer(false)} disabled={answered}>
+            <TouchableOpacity
+              style={stylesCapitalsHome.button}
+              onPress={() => handleAnswer(false)}
+            >
               <Text style={stylesCapitalsHome.answerText}>Campeche</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={stylesCapitalsHome.button} onPress={() => handleAnswer(false)} disabled={answered}>
+            <TouchableOpacity
+              style={stylesCapitalsHome.button}
+              onPress={() => handleAnswer(false)}
+            >
               <Text style={stylesCapitalsHome.answerText}>Puebla</Text>
             </TouchableOpacity>
           </View>
           <Text style={stylesCapitalsHome.scoreText}>Puntaje: {score}</Text>
         </View>
       ),
-      subtitle: '',
+      subtitle: "",
     },
+    /*Veracruz*/
     {
-      backgroundColor: 'rgba(255, 160, 122, 0.9)',
-      image: <Image style={stylesCapitalsHome.image} source={require('./assets/Veracruz.png')} />,
-      title: ( 
-      <View style={stylesCapitalsHome.titleContainer}>
-        <View style={stylesCapitalsHome.answersContainer}>
-          <Text style={stylesCapitalsHome.titleText}>Veracruz</Text>
-          <TouchableOpacity style={stylesCapitalsHome.button} >
-            <Text style={stylesCapitalsHome.answerText}>Cordoba</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={stylesCapitalsHome.button} >
-            <Text style={stylesCapitalsHome.answerText}>Xalapa</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={stylesCapitalsHome.button} >
-            <Text style={stylesCapitalsHome.answerText}>Michoacan</Text>
-          </TouchableOpacity>
+      backgroundColor: "rgba(255, 160, 122, 0.9)",
+      image: <Image style={stylesCapitalsHome.image} source={veracruzImage} />,
+      title: (
+        <View style={stylesCapitalsHome.titleContainer}>
+          <View style={stylesCapitalsHome.answersContainer}>
+            <Text style={stylesCapitalsHome.titleText}>Veracruz</Text>
+            <TouchableOpacity style={stylesCapitalsHome.button}>
+              <Text style={stylesCapitalsHome.answerText}>Cordoba</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={stylesCapitalsHome.button}>
+              <Text style={stylesCapitalsHome.answerText}>Xalapa</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={stylesCapitalsHome.button}>
+              <Text style={stylesCapitalsHome.answerText}>Michoacan</Text>
+            </TouchableOpacity>
+          </View>
+          <Text style={stylesCapitalsHome.scoreText}>Puntaje: {score}</Text>
         </View>
-        <Text style={stylesCapitalsHome.scoreText}>Puntaje: {score}</Text>
-      </View>
       ),
-      subtitle: '',
+      subtitle: "",
     },
+    /*Merida*/
     {
-      backgroundColor: 'rgba(255, 160, 122, 0.9)',
-      image: <Image style={stylesCapitalsHome.image} source={require('./assets/Yucatan.png')} />,
-      title: ( 
+      backgroundColor: "rgba(255, 160, 122, 0.9)",
+      image: <Image style={stylesCapitalsHome.image} source={yucantanImage} />,
+      title: (
         <View style={stylesCapitalsHome.titleContainer}>
           <View style={stylesCapitalsHome.answersContainer}>
             <Text style={stylesCapitalsHome.titleText}>Merida</Text>
-            <TouchableOpacity style={stylesCapitalsHome.button} >
+            <TouchableOpacity style={stylesCapitalsHome.button}>
               <Text style={stylesCapitalsHome.answerText}>Guerrero</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={stylesCapitalsHome.button} >
+            <TouchableOpacity style={stylesCapitalsHome.button}>
               <Text style={stylesCapitalsHome.answerText}>Hidalgo</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={stylesCapitalsHome.button} >
+            <TouchableOpacity style={stylesCapitalsHome.button}>
               <Text style={stylesCapitalsHome.answerText}>Yucatan</Text>
             </TouchableOpacity>
           </View>
           <Text style={stylesCapitalsHome.scoreText}>Puntaje: {score}</Text>
         </View>
-        ),
-      subtitle: '',
+      ),
+      subtitle: "",
     },
+    /*Puebla*/
     {
-      backgroundColor: 'rgba(255, 160, 122, 0.9)',
-      image: <Image style={stylesCapitalsHome.image} source={require('./assets/Puebla.png')} />,
-      title: ( 
+      backgroundColor: "rgba(255, 160, 122, 0.9)",
+      image: <Image style={stylesCapitalsHome.image} source={pueblaImage} />,
+      title: (
         <View style={stylesCapitalsHome.titleContainer}>
           <View style={stylesCapitalsHome.answersContainer}>
             <Text style={stylesCapitalsHome.titleText}>Puebla</Text>
-            <TouchableOpacity style={stylesCapitalsHome.button} >
+            <TouchableOpacity style={stylesCapitalsHome.button}>
               <Text style={stylesCapitalsHome.answerText}>Sonora</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={stylesCapitalsHome.button} >
+            <TouchableOpacity style={stylesCapitalsHome.button}>
               <Text style={stylesCapitalsHome.answerText}>Tlaxcala</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={stylesCapitalsHome.button} >
+            <TouchableOpacity style={stylesCapitalsHome.button}>
               <Text style={stylesCapitalsHome.answerText}>Puebla</Text>
             </TouchableOpacity>
           </View>
           <Text style={stylesCapitalsHome.scoreText}>Puntaje: {score}</Text>
         </View>
-        ),
-      subtitle: '',
+      ),
+      subtitle: "",
     },
   ];
 

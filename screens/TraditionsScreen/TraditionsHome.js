@@ -1,6 +1,6 @@
-import React,{useEffect,useState} from 'react';
-import { Text,SafeAreaView } from 'react-native';
-import stylesTraditionsHome from './TraditionsHomeStyles';
+import React, { useEffect, useState } from "react";
+import { Text, SafeAreaView } from "react-native";
+import stylesTraditionsHome from "./TraditionsHomeStyles";
 
 export default function TraditionsHome() {
   return (
@@ -9,4 +9,3 @@ export default function TraditionsHome() {
     </SafeAreaView>
   );
 }
-
