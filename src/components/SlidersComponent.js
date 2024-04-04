@@ -9,11 +9,6 @@ import { StatusBar } from "expo-status-bar";
 import Onboarding from "react-native-onboarding-swiper";
 import React, { useEffect, useState } from "react";
 import stylesSlidersComponent from "./SliderComponentStyles";
-import monterreyImage from "../../screens/CapitalsScreen/assets/Monterrey.png";
-import jaliscoImage from "../../screens/CapitalsScreen/assets/Jalisco.png";
-import pueblaImage from "../../screens/CapitalsScreen/assets/Puebla.png";
-import veracruzImage from "../../screens/CapitalsScreen/assets/Veracruz.png";
-import yucantanImage from "../../screens/CapitalsScreen/assets/Yucatan.png";
 
 function SliderComponent(props) {
   const [score, setScore] = useState(0);
@@ -33,12 +28,17 @@ function SliderComponent(props) {
     {
       backgroundColor: "rgba(255, 160, 122, 0.9)",
       image: (
-        <Image style={stylesSlidersComponent.image} source={monterreyImage} />
+        <Image
+          style={stylesSlidersComponent.image}
+          source={props.questionOne.wallpaper}
+        />
       ),
       title: (
         <View style={stylesSlidersComponent.titleContainer}>
           <View style={stylesSlidersComponent.answersContainer}>
-            <Text style={stylesSlidersComponent.titleText}>{props.title}</Text>
+            <Text style={stylesSlidersComponent.titleText}>
+              {props.questionOne.title}
+            </Text>
             <TouchableOpacity
               style={stylesSlidersComponent.button}
               onPress={() => handleAnswer(true)}
@@ -67,12 +67,15 @@ function SliderComponent(props) {
     {
       backgroundColor: "rgba(255, 160, 122, 0.9)",
       image: (
-        <Image style={stylesSlidersComponent.image} source={jaliscoImage} />
+        <Image
+          style={stylesSlidersComponent.image}
+          source={props.questionTwo.wallpaper}
+        />
       ),
       title: (
         <View style={stylesSlidersComponent.titleContainer}>
           <View style={stylesSlidersComponent.answersContainer}>
-            <Text style={stylesSlidersComponent.titleText}>{props.title}</Text>
+            <Text style={stylesSlidersComponent.titleText}>A</Text>
             <TouchableOpacity
               style={stylesSlidersComponent.button}
               onPress={() => handleAnswer(true)}
@@ -101,7 +104,10 @@ function SliderComponent(props) {
     {
       backgroundColor: "rgba(255, 160, 122, 0.9)",
       image: (
-        <Image style={stylesSlidersComponent.image} source={veracruzImage} />
+        <Image
+          style={stylesSlidersComponent.image}
+          source={props.questionThree.wallpaper}
+        />
       ),
       title: (
         <View style={stylesSlidersComponent.titleContainer}>
@@ -126,7 +132,10 @@ function SliderComponent(props) {
     {
       backgroundColor: "rgba(255, 160, 122, 0.9)",
       image: (
-        <Image style={stylesSlidersComponent.image} source={yucantanImage} />
+        <Image
+          style={stylesSlidersComponent.image}
+          source={props.questionFour.wallpaper}
+        />
       ),
       title: (
         <View style={stylesSlidersComponent.titleContainer}>
@@ -151,7 +160,10 @@ function SliderComponent(props) {
     {
       backgroundColor: "rgba(255, 160, 122, 0.9)",
       image: (
-        <Image style={stylesSlidersComponent.image} source={pueblaImage} />
+        <Image
+          style={stylesSlidersComponent.image}
+          source={props.questionFive.wallpaper}
+        />
       ),
       title: (
         <View style={stylesSlidersComponent.titleContainer}>
