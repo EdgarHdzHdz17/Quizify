@@ -19,7 +19,7 @@ export default function CapitalsHome() {
   const [score, setScore] = useState(0);
 
   const handleAnswer = (isCorrect) => {
-    let newScore = isCorrect ? score + 2 : Math.max(score - 2, 0);
+    let newScore = isCorrect ? Math.min(score + 2, 10) : Math.max(score - 2, 0);
     setScore(newScore);
     console.log(newScore);
 
