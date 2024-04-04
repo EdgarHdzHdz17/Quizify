@@ -43,19 +43,25 @@ function SliderComponent(props) {
               style={stylesSlidersComponent.button}
               onPress={() => handleAnswer(true)}
             >
-              <Text style={stylesSlidersComponent.answerText}>Monterrey</Text>
+              <Text style={stylesSlidersComponent.answerText}>
+                {props.questionOne.answer1}
+              </Text>
             </TouchableOpacity>
             <TouchableOpacity
               style={stylesSlidersComponent.button}
               onPress={() => handleAnswer(false)}
             >
-              <Text style={stylesSlidersComponent.answerText}>CDMX</Text>
+              <Text style={stylesSlidersComponent.answerText}>
+                {props.questionOne.answer2}
+              </Text>
             </TouchableOpacity>
             <TouchableOpacity
               style={stylesSlidersComponent.button}
               onPress={() => handleAnswer(false)}
             >
-              <Text style={stylesSlidersComponent.answerText}>San Nicolas</Text>
+              <Text style={stylesSlidersComponent.answerText}>
+                {props.questionOne.answer3}
+              </Text>
             </TouchableOpacity>
           </View>
           <Text style={stylesSlidersComponent.scoreText}>Puntaje: {score}</Text>

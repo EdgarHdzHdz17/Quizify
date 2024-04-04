@@ -8,9 +8,9 @@ const PropsTraditions = {
   questionOne: {
     wallpaper: monterreyImage,
     title: "Nuevo Leon",
-    answer1: "Amigoooooo",
-    answer2: "B",
-    answer3: "C",
+    answer1: "Monterrey",
+    answer2: "CDMX",
+    answer3: "San Nicolas",
   },
   questionTwo: {
     wallpaper: jaliscoImage,
