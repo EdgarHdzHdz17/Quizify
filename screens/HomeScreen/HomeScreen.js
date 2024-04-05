@@ -1,11 +1,5 @@
 import { StatusBar } from "expo-status-bar";
-import {
-  Text,
-  View,
-  TouchableOpacity,
-  SafeAreaView,
-  Image,
-} from "react-native";
+import { Text, View, TouchableOpacity, SafeAreaView } from "react-native";
 import stylesHomeScreen from "./HomeScreenStyles";
 import { useNavigation } from "@react-navigation/native";
 import CardComponent from "../../src/components/CardComponent";

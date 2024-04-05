@@ -1,16 +1,10 @@
-import {
-  View,
-  Image,
-  Text,
-  TouchableOpacity,
-  SafeAreaView,
-} from "react-native";
+import { Image, Text, TouchableOpacity, SafeAreaView } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import Onboarding from "react-native-onboarding-swiper";
 import React, { useEffect, useState } from "react";
 import stylesSlidersComponent from "./SliderComponentStyles";
 
-function SliderComponent(props) {
+function SlidersComponent(props) {
   const [score, setScore] = useState(0);
 
   const handleAnswer = (isCorrect) => {
@@ -23,186 +17,89 @@ function SliderComponent(props) {
     }
   };
 
-  const pages = [
-    /*Monterrey*/
+  const Bottons = () => {
+    return (
+      <>
+        <TouchableOpacity
+          style={stylesSlidersComponent.button}
+          onPress={() => handleAnswer(true)}
+        >
+          <Text style={stylesSlidersComponent.answerText}>
+            {props.questionOne.answer1}
+          </Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={stylesSlidersComponent.button}
+          onPress={() => handleAnswer(false)}
+        >
+          <Text style={stylesSlidersComponent.answerText}>
+            {props.questionOne.answer2}
+          </Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={stylesSlidersComponent.button}
+          onPress={() => handleAnswer(false)}
+        >
+          <Text style={stylesSlidersComponent.answerText}>
+            {props.questionOne.answer3}
+          </Text>
+        </TouchableOpacity>
+        <Text style={stylesSlidersComponent.scoreText}>Puntaje: {score}</Text>
+      </>
+    );
+  };
+
+  const Title = (props) => {
+    return (
+      <Text style={stylesSlidersComponent.titleText}>{props.description}</Text>
+    );
+  };
+
+  const sliders = [
     {
       backgroundColor: "rgba(255, 160, 122, 0.9)",
-      image: (
-        <Image
-          style={stylesSlidersComponent.image}
-          source={props.questionOne.wallpaper}
-        />
-      ),
-      title: (
-        <View style={stylesSlidersComponent.titleContainer}>
-          <View style={stylesSlidersComponent.answersContainer}>
-            <Text style={stylesSlidersComponent.titleText}>
-              {props.questionOne.title}
-            </Text>
-            <TouchableOpacity
-              style={stylesSlidersComponent.button}
-              onPress={() => handleAnswer(true)}
-            >
-              <Text style={stylesSlidersComponent.answerText}>
-                {props.questionOne.answer1}
-              </Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={stylesSlidersComponent.button}
-              onPress={() => handleAnswer(false)}
-            >
-              <Text style={stylesSlidersComponent.answerText}>
-                {props.questionOne.answer2}
-              </Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={stylesSlidersComponent.button}
-              onPress={() => handleAnswer(false)}
-            >
-              <Text style={stylesSlidersComponent.answerText}>
-                {props.questionOne.answer3}
-              </Text>
-            </TouchableOpacity>
-          </View>
-          <Text style={stylesSlidersComponent.scoreText}>Puntaje: {score}</Text>
-        </View>
-      ),
-      subtitle: "",
+      image: <Image source={props.imageSection} />,
+      title: props.seccion,
+      subtitle: props.introduction,
     },
-    /*Guadalajara*/
     {
       backgroundColor: "rgba(255, 160, 122, 0.9)",
-      image: (
-        <Image
-          style={stylesSlidersComponent.image}
-          source={props.questionTwo.wallpaper}
-        />
-      ),
-      title: (
-        <View style={stylesSlidersComponent.titleContainer}>
-          <View style={stylesSlidersComponent.answersContainer}>
-            <Text style={stylesSlidersComponent.titleText}>A</Text>
-            <TouchableOpacity
-              style={stylesSlidersComponent.button}
-              onPress={() => handleAnswer(true)}
-            >
-              <Text style={stylesSlidersComponent.answerText}>Jalisco</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={stylesSlidersComponent.button}
-              onPress={() => handleAnswer(false)}
-            >
-              <Text style={stylesSlidersComponent.answerText}>Campeche</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={stylesSlidersComponent.button}
-              onPress={() => handleAnswer(false)}
-            >
-              <Text style={stylesSlidersComponent.answerText}>Puebla</Text>
-            </TouchableOpacity>
-          </View>
-          <Text style={stylesSlidersComponent.scoreText}>Puntaje: {score}</Text>
-        </View>
-      ),
-      subtitle: "",
+      image: <Image source={props.questionOne.wallpaper} />,
+      title: <Title description={props.questionOne.title}></Title>,
+      subtitle: <Bottons></Bottons>,
     },
-    /*Veracruz*/
     {
       backgroundColor: "rgba(255, 160, 122, 0.9)",
-      image: (
-        <Image
-          style={stylesSlidersComponent.image}
-          source={props.questionThree.wallpaper}
-        />
-      ),
-      title: (
-        <View style={stylesSlidersComponent.titleContainer}>
-          <View style={stylesSlidersComponent.answersContainer}>
-            <Text style={stylesSlidersComponent.titleText}>Veracruz</Text>
-            <TouchableOpacity style={stylesSlidersComponent.button}>
-              <Text style={stylesSlidersComponent.answerText}>Cordoba</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={stylesSlidersComponent.button}>
-              <Text style={stylesSlidersComponent.answerText}>Xalapa</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={stylesSlidersComponent.button}>
-              <Text style={stylesSlidersComponent.answerText}>Michoacan</Text>
-            </TouchableOpacity>
-          </View>
-          <Text style={stylesSlidersComponent.scoreText}>Puntaje: {score}</Text>
-        </View>
-      ),
-      subtitle: "",
+      image: <Image source={props.questionTwo.wallpaper} />,
+      title: <Title description={props.questionTwo.title}></Title>,
+      subtitle: <Bottons></Bottons>,
     },
-    /*Merida*/
     {
       backgroundColor: "rgba(255, 160, 122, 0.9)",
-      image: (
-        <Image
-          style={stylesSlidersComponent.image}
-          source={props.questionFour.wallpaper}
-        />
-      ),
-      title: (
-        <View style={stylesSlidersComponent.titleContainer}>
-          <View style={stylesSlidersComponent.answersContainer}>
-            <Text style={stylesSlidersComponent.titleText}>Merida</Text>
-            <TouchableOpacity style={stylesSlidersComponent.button}>
-              <Text style={stylesSlidersComponent.answerText}>Guerrero</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={stylesSlidersComponent.button}>
-              <Text style={stylesSlidersComponent.answerText}>Hidalgo</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={stylesSlidersComponent.button}>
-              <Text style={stylesSlidersComponent.answerText}>Yucatan</Text>
-            </TouchableOpacity>
-          </View>
-          <Text style={stylesSlidersComponent.scoreText}>Puntaje: {score}</Text>
-        </View>
-      ),
-      subtitle: "",
+      image: <Image source={props.questionThree.wallpaper} />,
+      title: <Title description={props.questionThree.title}></Title>,
+      subtitle: <Bottons></Bottons>,
     },
-    /*Puebla*/
     {
       backgroundColor: "rgba(255, 160, 122, 0.9)",
-      image: (
-        <Image
-          style={stylesSlidersComponent.image}
-          source={props.questionFive.wallpaper}
-        />
-      ),
-      title: (
-        <View style={stylesSlidersComponent.titleContainer}>
-          <View style={stylesSlidersComponent.answersContainer}>
-            <Text style={stylesSlidersComponent.titleText}>Puebla</Text>
-            <TouchableOpacity style={stylesSlidersComponent.button}>
-              <Text style={stylesSlidersComponent.answerText}>Sonora</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={stylesSlidersComponent.button}>
-              <Text style={stylesSlidersComponent.answerText}>Tlaxcala</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={stylesSlidersComponent.button}>
-              <Text style={stylesSlidersComponent.answerText}>Puebla</Text>
-            </TouchableOpacity>
-          </View>
-          <Text style={stylesSlidersComponent.scoreText}>Puntaje: {score}</Text>
-        </View>
-      ),
-      subtitle: "",
+      image: <Image source={props.questionFour.wallpaper} />,
+      title: <Title description={props.questionFour.title}></Title>,
+      subtitle: <Bottons></Bottons>,
+    },
+    {
+      backgroundColor: "rgba(255, 160, 122, 0.9)",
+      image: <Image source={props.questionFive.wallpaper} />,
+      title: <Title description={props.questionFive.title}></Title>,
+      subtitle: <Bottons></Bottons>,
     },
   ];
 
   return (
     <SafeAreaView style={stylesSlidersComponent.container}>
-      <Onboarding
-        showPagination={false}
-        pages={pages.map((page) => ({
-          ...page,
-        }))}
-      />
+      <Onboarding showPagination={false} pages={sliders} />
       <StatusBar style="auto" />
     </SafeAreaView>
   );
 }
 
-export default SliderComponent;
+export default SlidersComponent;

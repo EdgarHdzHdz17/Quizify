@@ -1,10 +1,6 @@
 import { View, Text, SafeAreaView } from "react-native";
-import stylesAnimalsHome from "./AnimalHomeStyles";
-
+import SlidersComponent from "../../src/components/SlidersComponent";
+import PropsAnimals from "./PropsAnimals";
 export default function AnimalsHome() {
-  return (
-    <SafeAreaView style={stylesAnimalsHome.container}>
-      <Text>Hellow Word</Text>
-    </SafeAreaView>
-  );
+  return <SlidersComponent {...PropsAnimals}></SlidersComponent>;
 }
