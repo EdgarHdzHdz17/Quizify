@@ -1,6 +1,6 @@
 import { Text, Image } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
-import stylesCardComponent from "./CardComponentStyles";
+import stylesCardComponent from "./styles/CardComponentStyles";
 
 function CardComponent({ category, image }) {
   return (

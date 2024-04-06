@@ -2,7 +2,7 @@ import { Image, Text, TouchableOpacity, SafeAreaView } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import Onboarding from "react-native-onboarding-swiper";
 import React, { useEffect, useState } from "react";
-import stylesSlidersComponent from "./SliderComponentStyles";
+import stylesSlidersComponent from "./styles/SliderComponentStyles";
 
 function SlidersComponent(props) {
   const [score, setScore] = useState(0);
@@ -17,42 +17,40 @@ function SlidersComponent(props) {
     }
   };
 
-  const Bottons = () => {
+  const Buttons = ({ option1, option2, option3, answer }) => {
     return (
       <>
         <TouchableOpacity
           style={stylesSlidersComponent.button}
-          onPress={() => handleAnswer(true)}
+          onPress={() =>
+            option1 === answer ? handleAnswer(true) : handleAnswer(false)
+          }
         >
-          <Text style={stylesSlidersComponent.answerText}>
-            {props.questionOne.answer1}
-          </Text>
+          <Text style={stylesSlidersComponent.answerText}>{option1}</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={stylesSlidersComponent.button}
-          onPress={() => handleAnswer(false)}
+          onPress={() =>
+            option2 === answer ? handleAnswer(true) : handleAnswer(false)
+          }
         >
-          <Text style={stylesSlidersComponent.answerText}>
-            {props.questionOne.answer2}
-          </Text>
+          <Text style={stylesSlidersComponent.answerText}>{option2}</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={stylesSlidersComponent.button}
-          onPress={() => handleAnswer(false)}
+          onPress={() =>
+            option3 === answer ? handleAnswer(true) : handleAnswer(false)
+          }
         >
-          <Text style={stylesSlidersComponent.answerText}>
-            {props.questionOne.answer3}
-          </Text>
+          <Text style={stylesSlidersComponent.answerText}>{option3}</Text>
         </TouchableOpacity>
         <Text style={stylesSlidersComponent.scoreText}>Puntaje: {score}</Text>
       </>
     );
   };
 
-  const Title = (props) => {
-    return (
-      <Text style={stylesSlidersComponent.titleText}>{props.description}</Text>
-    );
+  const Title = ({ description }) => {
+    return <Text style={stylesSlidersComponent.titleText}>{description}</Text>;
   };
 
   const sliders = [
@@ -66,31 +64,66 @@ function SlidersComponent(props) {
       backgroundColor: "rgba(255, 160, 122, 0.9)",
       image: <Image source={props.questionOne.wallpaper} />,
       title: <Title description={props.questionOne.title}></Title>,
-      subtitle: <Bottons></Bottons>,
+      subtitle: (
+        <Buttons
+          option1={props.questionOne.options[0]}
+          option2={props.questionOne.options[1]}
+          option3={props.questionOne.options[2]}
+          answer={props.questionOne.correct}
+        ></Buttons>
+      ),
     },
     {
       backgroundColor: "rgba(255, 160, 122, 0.9)",
       image: <Image source={props.questionTwo.wallpaper} />,
       title: <Title description={props.questionTwo.title}></Title>,
-      subtitle: <Bottons></Bottons>,
+      subtitle: (
+        <Buttons
+          option1={props.questionTwo.options[0]}
+          option2={props.questionTwo.options[1]}
+          option3={props.questionTwo.options[2]}
+          answer={props.questionTwo.correct}
+        ></Buttons>
+      ),
     },
     {
       backgroundColor: "rgba(255, 160, 122, 0.9)",
       image: <Image source={props.questionThree.wallpaper} />,
       title: <Title description={props.questionThree.title}></Title>,
-      subtitle: <Bottons></Bottons>,
+      subtitle: (
+        <Buttons
+          option1={props.questionThree.options[0]}
+          option2={props.questionThree.options[1]}
+          option3={props.questionThree.options[2]}
+          answer={props.questionThree.correct}
+        ></Buttons>
+      ),
     },
     {
       backgroundColor: "rgba(255, 160, 122, 0.9)",
       image: <Image source={props.questionFour.wallpaper} />,
       title: <Title description={props.questionFour.title}></Title>,
-      subtitle: <Bottons></Bottons>,
+      subtitle: (
+        <Buttons
+          option1={props.questionFour.options[0]}
+          option2={props.questionFour.options[1]}
+          option3={props.questionFour.options[2]}
+          answer={props.questionFour.correct}
+        ></Buttons>
+      ),
     },
     {
       backgroundColor: "rgba(255, 160, 122, 0.9)",
       image: <Image source={props.questionFive.wallpaper} />,
       title: <Title description={props.questionFive.title}></Title>,
-      subtitle: <Bottons></Bottons>,
+      subtitle: (
+        <Buttons
+          option1={props.questionFive.options[0]}
+          option2={props.questionFive.options[1]}
+          option3={props.questionFive.options[2]}
+          answer={props.questionFive.correct}
+        ></Buttons>
+      ),
     },
   ];
 
