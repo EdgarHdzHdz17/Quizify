@@ -8,6 +8,21 @@ const stylesCardComponent = StyleSheet.create({
     height: "100%",
   },
 
+  card: {
+    flex: 1,
+    flexDirection: "row",
+  },
+
+  textView: {
+    width: "60%",
+  },
+
+  imageView: {
+    width: "40%",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+
   textCard: {
     color: "white",
     fontSize: 30,
@@ -19,9 +34,6 @@ const stylesCardComponent = StyleSheet.create({
   imageCard: {
     width: "60%",
     height: "60%",
-    top: "30%",
-    left: "40%",
-    position: "absolute",
   },
 });
 
