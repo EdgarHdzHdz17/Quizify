@@ -17,7 +17,7 @@ const stylesHomeScreen = StyleSheet.create({
   headerText: {
     color: "#fa8072",
     fontSize: 40,
-    marginTop: 20,
+    marginTop: 30,
     marginLeft: 30,
     fontWeight: "bold",
   },
