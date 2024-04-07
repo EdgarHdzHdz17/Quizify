@@ -22,7 +22,7 @@ export default function HomeScreen() {
           onPress={() => navigation.navigate("CapitalsHome")}
         >
           <CardComponent
-            category="Capitals"
+            category="1-Capitales"
             image={CapitalsImage}
           ></CardComponent>
         </TouchableOpacity>
@@ -32,7 +32,7 @@ export default function HomeScreen() {
           onPress={() => navigation.navigate("TraditionsHome")}
         >
           <CardComponent
-            category="Traditions"
+            category="2-Tradiciones"
             image={TraditionsImage}
           ></CardComponent>
         </TouchableOpacity>
@@ -42,7 +42,7 @@ export default function HomeScreen() {
           onPress={() => navigation.navigate("AnimalsHome")}
         >
           <CardComponent
-            category="Animals"
+            category="3-Animales"
             image={AnimalsImage}
           ></CardComponent>
         </TouchableOpacity>
