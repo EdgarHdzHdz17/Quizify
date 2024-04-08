@@ -13,27 +13,24 @@ const stylesCardComponent = StyleSheet.create({
     flexDirection: "row",
   },
 
-  textView: {
-    width: "60%",
-  },
-
-  imageView: {
-    width: "40%",
-    justifyContent: "center",
-    alignItems: "center",
+  cardContainer: {
+    width: "90%",
+    height: "30%",
   },
 
   textCard: {
     color: "white",
     fontSize: 30,
-    marginLeft: "10%",
-    marginTop: "10%",
+    marginLeft: 30,
+    marginTop: 20,
     fontWeight: "bold",
   },
 
   imageCard: {
-    width: "60%",
-    height: "60%",
+    width: 100,
+    height: 100,
+    marginLeft: 50,
+    marginTop: 30,
   },
 });
 

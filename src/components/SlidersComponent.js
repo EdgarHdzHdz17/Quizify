@@ -56,12 +56,6 @@ function SlidersComponent(props) {
   const sliders = [
     {
       backgroundColor: "rgba(255, 160, 122, 0.9)",
-      image: <Image source={props.imageSection} />,
-      title: props.seccion,
-      subtitle: props.introduction,
-    },
-    {
-      backgroundColor: "rgba(255, 160, 122, 0.9)",
       image: <Image source={props.questionOne.wallpaper} />,
       title: <Title description={props.questionOne.title}></Title>,
       subtitle: (
